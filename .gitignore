@@ -1,0 +1,24 @@
+
+# pio specifics
+.pio
+
+# vscode specifics
+.vscode/*
+
+# hacking/scratching
+*scratch*
+debug_logs/*
+
+# python specifics
+**__pycache__**
+
+
+# Private keys, tokens, whatever
+*/tokens.toml
+*/keys.toml
+
+release.tmp
+dev_release.tmp
+
+*secrets*
+tmp/*
