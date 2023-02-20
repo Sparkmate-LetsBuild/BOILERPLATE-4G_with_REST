@@ -46,6 +46,7 @@ _n.b. We will be setting the on-board time on the fly, using the time response f
 
 <img src="./readme_assets/wiring%20diagram.jpg" width="500px">
 
+
 ### Selecting your cellular chip
 
 - Chip selection is an important factor. The two main brands we have worked with are [UBlox](https://www.u-blox.com/en/cellular-modules) and [SIMCOM](https://www.simcom.com/module/4g.html).
