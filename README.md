@@ -22,12 +22,15 @@ All of the below optional extras have been included, but you may wish to remove 
 
 ### SSL layers (for HTTPS and 443 endpoints)
 
-- Note that an SSL layer using Trust Anchors requires an up to date timestamp in order to issue the certificate.
-- We attempt to get this up to date timestamp from the cell tower in the function
+- Note that an SSL layer using Trust Anchors requires an up to date timestamp in order to issue an up to date certificate.
+- We attempt to get this up to date timestamp from the cell tower in the function `updateSSLTime()`.
+- In the event that we can't update the SSL time from the cell tower, we automatically fall back to the compilation time of the ESP32's firmware, as per [this point on the SSLClient readme](https://github.com/OPEnSLab-OSU/SSLclient#time).
 
-### .json POST requests
+### JSON POST requests
 
--
+- JSON bodies are very common in REST requests, so that's what we use here.
+- We construct the JSON bodies using the [ArduinoJSON](https://arduinojson.org/) functions, notably using `serializeJson` and `deserializeJson` to Stringify/deStringify our bodies.
+- In many cases you will instead use _Influx Line Protocol_, _MQTT_, or any other range of custom/standard methods to transmit data.
 
 # Making a GET request, filtering the results, then making a POST request _(example of repo)_
 
@@ -45,7 +48,6 @@ _n.b. We will be setting the on-board time on the fly, using the time response f
 - Your wiring diagram will be similar to the below. Don't forget an active SIM card and an antenna!
 
 <img src="./readme_assets/wiring%20diagram.jpg" width="500px">
-
 
 ### Selecting your cellular chip
 
