@@ -2,7 +2,7 @@
 
 // configs
 #include <configs/OPERATIONS_config.h>
-#include <configs/REST_config.h>
+#include <configs/HTTP_config.h>
 
 // bricks
 #include <bricks/simcom_handler.h>
@@ -14,7 +14,7 @@
 
 using namespace ArduinoJson; // Needed to make ArduinoJson compile 😡
 
-namespace REST
+namespace HTTP
 {
     DynamicJsonDocument large_doc(32000);
     DynamicJsonDocument small_doc(4000);
@@ -52,7 +52,7 @@ namespace REST
             return error_doc;
         }
         deserializeJson(large_doc, response_body);
-        return REST::large_doc;
+        return HTTP::large_doc;
     }
 
     /**

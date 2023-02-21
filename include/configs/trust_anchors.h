@@ -12,7 +12,7 @@ extern "C"
  * Index:    0
  * Label:    DST Root CA X3
  * Subject:  CN=DST Root CA X3,O=Digital Signature Trust Co.
- * Domain(s): api.open-meteo.com, sparkmate-rest-test.free.beeceptor.com
+ * Domain(s): api.open-meteo.com, sparkmate-http-test.free.beeceptor.com
  */
 
 #define TAs_NUM 1

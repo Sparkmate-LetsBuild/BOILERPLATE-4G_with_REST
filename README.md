@@ -1,17 +1,17 @@
-# REST API calls over 4G on the ESP32/Arduino
+# HTTP POST and GET calls over 4G on the ESP32/Arduino
 
 _⚡ a Sparkmate Let's Build boiler-plate ⚡_
 
 ## Summary
 
-- This boilerplate gets you started with utilising HTTP REST calls over 4G with the ESP32/Arduinos.
+- This boilerplate gets you started with utilising HTTP methods over 4G with the ESP32/Arduinos.
 - We will be leveraging a [SIMCOM A7600E chip (on a Waveshare dev board)](https://www.waveshare.com/a7600e-cat-1-gsm-gprs-hat.htm) to connect our ESP32 to the internet over 4G (LTE Cat 1).
 - This boilerplate essentially serves as a wrapper around the very common [TinyGSM](https://github.com/vshymanskyy/TinyGSM) library, combining in what we've learnt about connecting to HTTPS endpoints, POSTing JSON requests, etc.
 - You should be able to combine this boilerplate with the [MQTT AWS boilerplate](https://github.com/Sparkmate-LetsBuild/BOILERPLATE-DualCoreESP32) if you wish to leverage MQTT over 4G.
 
 ## Capabilities/Limitations
 
-- TWO SERVERS/WEBSITES ONLY. These modules are capable of connecting to two servers for REST requests. _There may be a way to change the server/website during runtime, but so far I've not found it._
+- TWO SERVERS/WEBSITES ONLY. These modules are capable of connecting to two servers for HTTP requests. _There may be a way to change the server/website during runtime, but so far I've not found it._
 - HTTP BODY SIZE. The maximum body size is around 32 kB. This is already quite large for microprocessor devices, so you should be okay, but just be aware of this.
 - FILE DOWNLOADING/UPLOADING is entirely possible, but I've never tested this, and we do not (yet) explore this in this boilerplate. [Check out the example here](https://github.com/vshymanskyy/TinyGSM/blob/master/examples/FileDownload/FileDownload.ino) if you want to explore this on your own.
 - UPLOAD RATE. The fastest real-world upload rate I've ever really achieved is around 8kb/s (kilobyte per second). This is limited by the UART interface to the SIMCOM module (even at higher baud rates), so you may have better luck with SPI but you will need to modify the TinyGSMN library to leverage SPI.
@@ -28,7 +28,7 @@ All of the below optional extras have been included, but you may wish to remove 
 
 ### JSON POST requests
 
-- JSON bodies are very common in REST requests, so that's what we use here.
+- JSON bodies are very common in HTTP requests, so that's what we use here.
 - We construct the JSON bodies using the [ArduinoJSON](https://arduinojson.org/) functions, notably using `serializeJson` and `deserializeJson` to Stringify/deStringify our bodies.
 - In many cases you will instead use _Influx Line Protocol_, _MQTT_, or any other range of custom/standard methods to transmit data.
 
@@ -78,14 +78,14 @@ _n.b. We will be setting the on-board time on the fly, using the time response f
 
 ### Beeceptor POST testing endpoint
 
-We will be POSTing to two different Beeceptor endpoints on the [sparkmate-rest-test](https://beeceptor.com/console/sparkmate-rest-test) listener:
+We will be POSTing to two different Beeceptor endpoints on the [sparkmate-http-test](https://beeceptor.com/console/sparkmate-http-test) listener:
 
 - The `data` endpoint will have our filtered temperature, humidity, and rain results (current values only). This will happen every 30 seconds on the ESP32. This is obviously overkill but gives us an easy example to use.
 - The `status` endpoint will have device data so we can monitor the health of our device remotely. This will only happen every 2 minutes.
 
-_Be aware that free endpoints on Beeceptor have a limit of 50 requests per day. You can change the proxy name in the [./include/configs/REST_config.h](./include/configs/REST_config.h) file._
+_Be aware that free endpoints on Beeceptor have a limit of 50 requests per day. You can change the proxy name in the [./include/configs/HTTP_config.h](./include/configs/HTTP_config.h) file._
 
-Find the POST and GET functions in the [./include/rest_handler.h](./include/rest_handler.h) file.
+Find the POST and GET functions in the [./include/http_handler.h](./include/http_handler.h) file.
 
 ## Expected behaviour
 

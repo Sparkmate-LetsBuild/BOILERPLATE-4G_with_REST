@@ -8,7 +8,7 @@
 
 // bricks
 #include <inits/firmware_details_init.h>
-#include <rest_handler.h>
+#include <http_handler.h>
 
 // libs
 #include <StatusLogger.h>
@@ -73,15 +73,15 @@ void loop()
     if ((millis() - last_data_time) > DELAY_DATA_TIME)
     {
         // Get Meteo data
-        REST::large_doc = REST::getMeteorologicalData(DEFAULT_LAT, DEFAULT_LON);
+        HTTP::large_doc = HTTP::getMeteorologicalData(DEFAULT_LAT, DEFAULT_LON);
 
         // Filter Meteo data
-        if (REST::large_doc.containsKey("current_weather"))
+        if (HTTP::large_doc.containsKey("current_weather"))
         {
-            REST::small_doc = REST::large_doc["current_weather"];
+            HTTP::small_doc = HTTP::large_doc["current_weather"];
 
             // Post Meteo data
-            if (REST::postMeteorologicalData(REST::small_doc))
+            if (HTTP::postMeteorologicalData(HTTP::small_doc))
             {
                 StatusLogger::setBrickStatus(StatusLogger::NAME_BEECEPTOR, StatusLogger::FUNCTIONALITY_FULL, "Meteo data is up to date on beeceptor.");
             }
@@ -101,7 +101,7 @@ void loop()
     if ((millis() - last_status_time) > DELAY_STATUS_TIME)
     {
         StatusLogger::printBrickStatuses(&working_stream);
-        if (REST::postStatuses(working_stream.readString()))
+        if (HTTP::postStatuses(working_stream.readString()))
         {
             StatusLogger::setBrickStatus(StatusLogger::NAME_METEO, StatusLogger::FUNCTIONALITY_FULL, "Statuses up to date on beeceptor.");
         }
