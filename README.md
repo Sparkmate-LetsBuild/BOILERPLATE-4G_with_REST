@@ -7,7 +7,7 @@ _⚡ a Sparkmate Let's Build boiler-plate ⚡_
 - This boilerplate gets you started with utilising HTTP methods over 4G with the ESP32/Arduinos.
 - We will be leveraging a [SIMCOM A7600E chip (on a Waveshare dev board)](https://www.waveshare.com/a7600e-cat-1-gsm-gprs-hat.htm) to connect our ESP32 to the internet over 4G (LTE Cat 1).
 - This boilerplate essentially serves as a wrapper around the very common [TinyGSM](https://github.com/vshymanskyy/TinyGSM) library, combining in what we've learnt about connecting to HTTPS endpoints, POSTing JSON requests, etc.
-- You should be able to combine this boilerplate with the [MQTT AWS boilerplate](https://github.com/Sparkmate-LetsBuild/BOILERPLATE-DualCoreESP32) if you wish to leverage MQTT over 4G.
+- You should be able to combine this boilerplate with the [MQTT AWS boilerplate](https://github.com/Sparkmate-LetsBuild/BOILERPLATE-AWS_Integration) if you wish to leverage MQTT over 4G.
 
 ## Capabilities/Limitations
 
